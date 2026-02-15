@@ -1,0 +1,87 @@
+/NagrikNeeti
+│
+├── /public
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── candidate.html
+│   ├── compare.html
+│   ├── promises.html
+│   ├── reports.html
+│   ├── about.html
+│   ├── privacy.html
+│   └── 404.html
+│
+├── /admin
+│   ├── admin-login.html
+│   ├── admin-dashboard.html
+│   ├── add-candidate.html
+│   ├── edit-candidate.html
+│   ├── verify-data.html
+│   ├── manage-users.html
+│   └── analytics.html
+│
+├── /assets
+│   ├── /css
+│   │   ├── base.css
+│   │   ├── layout.css
+│   │   ├── components.css
+│   │   ├── auth.css
+│   │   ├── candidate.css
+│   │   ├── admin.css
+│   │   └── responsive.css
+│   │
+│   ├── /js
+│   │   ├── config.js
+│   │   ├── auth.js
+│   │   ├── role-guard.js
+│   │   ├── router.js
+│   │
+│   │   ├── firestore
+│   │   │   ├── users.js
+│   │   │   ├── candidates.js
+│   │   │   ├── promises.js
+│   │   │   ├── reports.js
+│   │   │   └── analytics.js
+│   │   │
+│   │   ├── storage
+│   │   │   └── uploads.js
+│   │   │
+│   │   ├── pages
+│   │   │   ├── home.js
+│   │   │   ├── dashboard.js
+│   │   │   ├── candidate.js
+│   │   │   ├── compare.js
+│   │   │   ├── admin-dashboard.js
+│   │   │   └── verify-data.js
+│   │   │
+│   │   └── utils
+│   │       ├── validators.js
+│   │       ├── formatters.js
+│   │       └── constants.js
+│   │
+│   └── /images
+│       ├── default-avatar.png
+│       ├── party-logos/
+│       └── ui/
+│
+├── /firebase
+│   ├── firebase-config.js
+│   ├── firestore-rules.txt
+│   ├── storage-rules.txt
+│   └── auth-rules.txt
+│
+└── README.md
+
+
+
+
+users (collection)
+│
+└── {uid} (document)
+    ├── name: string
+    ├── email: string
+    ├── role: "user" | "admin"
+    ├── createdAt: timestamp
+    ├── isActive: boolean

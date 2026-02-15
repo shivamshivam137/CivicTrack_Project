@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NagrikNeeti | Election Promises Tracker</title>
+
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+  <style>
+    .promise-tracker {
+      margin: 2rem 0;
+    }
+
+    .promise-tracker-header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 3rem 0;
+      margin: -2rem 0 2rem -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-right: -20px;
+    }
+
+    .promise-tracker-header h1 {
+      color: white;
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+    }
+
+    .promise-tracker-header p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .filters-section {
+      background: var(--bg-white);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .filters-section label {
+      font-weight: 600;
+      margin-right: 1rem;
+      display: inline-block;
+    }
+
+    .filters-section select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      min-width: 200px;
+    }
+
+    .candidate-promises-group {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .group-header {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+      color: white;
+      padding: 1.5rem;
+      border-bottom: 3px solid var(--primary-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .group-header:hover {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    }
+
+    .group-header h3 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .group-meta {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .group-collapse-icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .group-collapse-icon.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .promises-list {
+      padding: 1.5rem;
+    }
+
+    .promise-card {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--bg-light);
+      transition: var(--transition);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .promise-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .promise-card h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.125rem;
+      color: var(--text-primary);
+    }
+
+    .promise-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .promise-badge {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .badge-planned {
+      background-color: #fff3e0;
+      color: #f57c00;
+    }
+
+    .badge-in-progress {
+      background-color: #e3f2fd;
+      color: #1a73e8;
+    }
+
+    .badge-completed {
+      background-color: #e8f5e9;
+      color: #4caf50;
+    }
+
+    .promise-description {
+      color: var(--text-secondary);
+      margin: 0.75rem 0;
+      line-height: 1.5;
+    }
+
+    .promise-progress-section {
+      margin: 1rem 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .promise-links {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .promise-links a {
+      display: inline-block;
+      margin-right: 0.75rem;
+      margin-bottom: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--primary-light);
+      color: white;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .promise-links a:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+
+    .empty-state p {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">NagrikNeeti</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="candidate.html" class="nav-link">Candidates</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="reports.html" class="nav-link">Reports</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="promise-tracker-header">
+      <div class="container">
+        <h1>📋 Election Promises Tracker</h1>
+        <p>Monitor the fulfillment of election promises made by your elected representatives</p>
+      </div>
+    </div>
+
+    <section class="container promise-tracker">
+      <!-- Filter Section -->
+      <div class="filters-section">
+        <label for="statusFilter">Filter by Status:</label>
+        <select id="statusFilter">
+          <option value="">All Promises</option>
+          <option value="planned">Planned</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <label for="categoryFilter" style="margin-left: 2rem;">Filter by Category:</label>
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="healthcare">Healthcare</option>
+          <option value="education">Education</option>
+          <option value="infrastructure">Infrastructure</option>
+          <option value="employment">Employment</option>
+          <option value="agriculture">Agriculture</option>
+          <option value="environment">Environment</option>
+          <option value="social">Social Welfare</option>
+        </select>
+      </div>
+
+      <!-- Promises List Grouped by Candidate -->
+      <div id="promisesContainer">
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 NagrikNeeti. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../assets/js/pages/promises.js"></script>
+
+</body>
+</html>

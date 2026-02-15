@@ -1,0 +1,196 @@
+/* ===========================
+   Candidate Page Styles
+   Scope: /public/candidate.html
+   =========================== */
+
+/* Page header */
+header {
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    margin-bottom: 0.25rem;
+}
+
+/* ===========================
+   Filters
+   =========================== */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.filters input {
+    padding: 0.6rem 0.75rem;
+    width: 100%;
+    max-width: 260px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ===========================
+   Candidate List Grid
+   =========================== */
+
+#candidateContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+
+/* ===========================
+   Candidate Cards
+   =========================== */
+
+.candidate-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.candidate-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.candidate-card h3 {
+    margin-bottom: 0.25rem;
+}
+
+.candidate-card p {
+    margin: 0.15rem 0;
+    font-size: 0.95rem;
+}
+
+/* ===========================
+   Candidate Profile View
+   =========================== */
+
+.candidate-profile {
+    max-width: 600px;
+    background: #fff;
+    padding: 1.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.candidate-profile h2 {
+    margin-bottom: 0.75rem;
+}
+
+.candidate-profile p {
+    margin: 0.4rem 0;
+}
+
+.candidate-profile button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.candidate-profile button:hover {
+    background: #000;
+}
+
+/* ===========================
+   Candidate Images
+   =========================== */
+
+.candidate-card img {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.candidate-profile img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* ===========================
+   Progress Bars
+   =========================== */
+
+.progress-group {
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0.25rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4caf50;
+    transition: width 0.3s ease;
+}
+
+.progress-fill.transparency {
+    background: #2196f3;
+}
+
+/* ======================================================================================== */
+/* ===========================
+   Candidate Page Styles
+   =========================== */
+
+/* .filters {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.filters input {
+    padding: 0.6rem;
+    width: 100%;
+    max-width: 250px;
+}
+
+#candidateContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+
+.candidate-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    background: #fff;
+}
+
+.candidate-card:hover {
+    transform: translateY(-4px);
+}
+
+.candidate-profile {
+    max-width: 600px;
+}
+
+.candidate-profile button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+} */

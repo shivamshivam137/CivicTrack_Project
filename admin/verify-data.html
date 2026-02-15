@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NagrikNeeti | Verify Promises</title>
+
+  <!-- Admin styles -->
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+</head>
+<body>
+
+  <main class="admin-container">
+    <h1>Verify & Manage Promises</h1>
+
+    <!-- Add / Edit Promise Form -->
+    <section class="card">
+      <h2 id="formTitle">Add New Promise</h2>
+
+      <form id="promiseForm">
+        <input type="hidden" id="promiseId" />
+
+        <label>
+          Candidate ID
+          <input type="text" id="candidateId" required />
+        </label>
+
+        <label>
+          Title
+          <input type="text" id="title" required />
+        </label>
+
+        <label>
+          Description
+          <textarea id="description"></textarea>
+        </label>
+
+        <label>
+          Status
+          <select id="status" required>
+            <option value="planned">Planned</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+
+        <label>
+          Source URL
+          <input type="url" id="sourceUrl" />
+        </label>
+
+        <button type="submit">Save Promise</button>
+        <button type="button" id="cancelEdit" hidden>Cancel</button>
+      </form>
+    </section>
+
+    <!-- Promise List -->
+    <section class="card">
+      <h2>Existing Promises</h2>
+      <table id="promisesTable">
+        <thead>
+          <tr>
+            <th>Candidate</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Firebase config -->
+  <script type="module" src="../firebase/firebase-config.js"></script>
+
+  <!-- Page logic -->
+  <script type="module" src="../assets/js/pages/verify-data.js"></script>
+
+</body>
+</html>

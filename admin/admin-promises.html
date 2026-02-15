@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Promises | NagrikNeeti</title>
+
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <style>
+        .form-section {
+            margin-bottom: 2rem;
+            border-top: 2px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        .form-section h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .button-group button {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+        .admin-form {
+            background-color: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+        .promise-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        .promise-card h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .promise-card p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .promise-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: column;
+        }
+        .promise-actions button {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .status-planned {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+        .status-in-progress {
+            background-color: #e3f2fd;
+            color: #1a73e8;
+        }
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <h1>Promise Management</h1>
+    <p>Admin Panel - Manage Election Promises & Fulfillment Tracking</p>
+</header>
+
+<main class="admin-container">
+
+    <!-- Add / Edit Promise Form -->
+    <section class="admin-form">
+        <h2 id="formTitle">Add New Promise</h2>
+
+        <form id="promiseForm">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h3>Basic Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="candidateSelect">Select Candidate *</label>
+                        <select id="candidateSelect" required>
+                            <option value="">-- Choose a candidate --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="promiseTitle">Promise Title *</label>
+                        <input type="text" id="promiseTitle" required placeholder="e.g., Build 100 schools">
+                    </div>
+                    <div class="form-group">
+                        <label for="promiseCategory">Category</label>
+                        <select id="promiseCategory">
+                            <option value="">Select category</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="education">Education</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="employment">Employment</option>
+                            <option value="agriculture">Agriculture</option>
+                            <option value="environment">Environment</option>
+                            <option value="social">Social Welfare</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promise Details -->
+            <div class="form-section">
+                <h3>Promise Details</h3>
+                <div class="form-row">
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="promiseDescription">Description</label>
+                        <textarea id="promiseDescription" placeholder="Detailed description of the promise"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status & Progress -->
+            <div class="form-section">
+                <h3>Status & Progress</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="promiseStatus">Status *</label>
+                        <select id="promiseStatus" required>
+                            <option value="planned">Planned</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="completionPercentage">Completion Percentage (%)</label>
+                        <input type="number" id="completionPercentage" min="0" max="100" placeholder="0-100">
+                    </div>
+                    <div class="form-group">
+                        <label for="completionDate">Completion Date</label>
+                        <input type="date" id="completionDate">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proof & Documentation -->
+            <div class="form-section">
+                <h3>Proof & Documentation</h3>
+                <div class="form-row">
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="proofLinks">Proof Links (one URL per line or JSON array)</label>
+                        <textarea id="proofLinks" placeholder="https://example.com/proof1&#10;https://example.com/proof2&#10;or paste JSON array"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary" id="submitBtn">Save Promise</button>
+                <button type="button" id="cancelEdit" class="btn btn-secondary hidden">Cancel Edit</button>
+                <button type="reset" class="btn btn-outline">Clear Form</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Promises List -->
+    <section class="admin-list">
+        <h2>All Promises</h2>
+        <div id="promisesList" style="margin-top: 1.5rem;">
+            <p style="padding: 2rem; text-align: center; color: var(--text-secondary);">Loading promises...</p>
+        </div>
+    </section>
+
+</main>
+
+<script type="module" src="/assets/js/pages/admin-promises.js"></script>
+</body>
+</html>

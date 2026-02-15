@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NagrikNeeti | Reports & Verification</title>
+
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">NagrikNeeti</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="candidate.html" class="nav-link">Candidates</a>
+        <a href="promises.html" class="nav-link">Promises</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="reports">
+      <h1>Reports & Verification</h1>
+      <p>Access verified reports on candidates' assets, criminal records, and performance metrics.</p>
+
+      <!-- Report Statistics -->
+      <div class="report-stats">
+        <div class="stat-card">
+          <h3>Total Candidates</h3>
+          <p id="totalCandidates" class="stat-number">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Verified Candidates</h3>
+          <p id="verifiedCandidates" class="stat-number">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Transparency Score</h3>
+          <p id="avgTransparency" class="stat-number">-</p>
+        </div>
+      </div>
+
+      <!-- Report Type Filter -->
+      <div class="filters">
+        <label for="reportTypeFilter">Filter by Report Type:</label>
+        <select id="reportTypeFilter">
+          <option value="">All Reports</option>
+          <option value="criminal">Criminal Records</option>
+          <option value="asset">Asset Declaration</option>
+          <option value="performance">Performance Report</option>
+        </select>
+      </div>
+
+      <!-- Reports List -->
+      <div id="reportsContainer" class="reports-grid">
+        <div class="spinner-container">
+          <div class="spinner"></div>
+          <p>Loading reports...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 NagrikNeeti. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../assets/js/pages/reports.js"></script>
+
+</body>
+</html>

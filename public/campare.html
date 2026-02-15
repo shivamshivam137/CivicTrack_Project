@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NagrikNeeti | Compare Candidates</title>
+
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">NagrikNeeti</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="candidate.html" class="nav-link">Candidates</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="comparison">
+      <h1>Compare Candidates</h1>
+      <p>Select candidates to compare their profiles, promises, and records.</p>
+
+      <!-- Candidate Selection -->
+      <div class="comparison-selection">
+        <div class="candidate-select">
+          <label for="candidate1">Select First Candidate:</label>
+          <select id="candidate1">
+            <option value="">-- Choose Candidate --</option>
+          </select>
+        </div>
+        <div class="candidate-select">
+          <label for="candidate2">Select Second Candidate:</label>
+          <select id="candidate2">
+            <option value="">-- Choose Candidate --</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="compareNowBtn">Compare</button>
+      </div>
+
+      <!-- Comparison Table -->
+      <div id="comparisonTableContainer" style="display:none;">
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th id="candidate1Name">Candidate 1</th>
+                <th id="candidate2Name">Candidate 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Party</strong></td>
+                <td id="comp-party1">-</td>
+                <td id="comp-party2">-</td>
+              </tr>
+              <tr>
+                <td><strong>Constituency</strong></td>
+                <td id="comp-const1">-</td>
+                <td id="comp-const2">-</td>
+              </tr>
+              <tr>
+                <td><strong>Education</strong></td>
+                <td id="comp-edu1">-</td>
+                <td id="comp-edu2">-</td>
+              </tr>
+              <tr>
+                <td><strong>Assets</strong></td>
+                <td id="comp-assets1">₹0</td>
+                <td id="comp-assets2">₹0</td>
+              </tr>
+              <tr>
+                <td><strong>Liabilities</strong></td>
+                <td id="comp-liab1">₹0</td>
+                <td id="comp-liab2">₹0</td>
+              </tr>
+              <tr>
+                <td><strong>Criminal Cases</strong></td>
+                <td id="comp-criminal1">0</td>
+                <td id="comp-criminal2">0</td>
+              </tr>
+              <tr>
+                <td><strong>Verified</strong></td>
+                <td id="comp-verified1">No</td>
+                <td id="comp-verified2">No</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="noComparisonMessage" class="empty-state">
+        <p>Select two candidates to see their comparison.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 NagrikNeeti. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../assets/js/pages/campare.js"></script>
+
+</body>
+</html>

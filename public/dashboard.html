@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NagrikNeeti | Dashboard</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23005AD0' width='100' height='100'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>N</text></svg>">
+
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">NagrikNeeti</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="dashboard">
+      <div id="loadingSpinner" class="spinner-container">
+        <div class="spinner"></div>
+        <p>Loading your dashboard...</p>
+      </div>
+
+      <div id="dashboardContent" style="display:none;">
+        <!-- Welcome Section -->
+        <div class="welcome-section" style="margin-bottom: 40px;">
+          <h1>Your Dashboard</h1>
+          <p class="subtitle">Welcome back, <span id="userNameDisplay">Guest</span>!</p>
+        </div>
+
+        <!-- User Info Card -->
+        <div class="card" style="margin-bottom: 30px;">
+          <h2>Account Information</h2>
+          <div class="user-info">
+            <div class="info-row">
+              <span class="label">Name:</span>
+              <span class="value" id="userName">-</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Email:</span>
+              <span class="value" id="userEmail">-</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Role:</span>
+              <span class="value" id="userRole">-</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Account Created:</span>
+              <span class="value" id="accountCreated">-</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section" style="margin-bottom: 30px;">
+          <h2>Platform Insights</h2>
+          <div class="stats-grid">
+            <div class="stat-card card-gradient">
+              <div class="stat-number" id="totalCandidates">0</div>
+              <div class="stat-label">Total Candidates</div>
+            </div>
+            <div class="stat-card card-gradient">
+              <div class="stat-number" id="totalPromises">0</div>
+              <div class="stat-label">Promises Tracked</div>
+            </div>
+            <div class="stat-card card-gradient">
+              <div class="stat-number" id="promisesCompleted">0%</div>
+              <div class="stat-label">Avg Fulfillment</div>
+            </div>
+            <div class="stat-card card-gradient">
+              <div class="stat-number" id="fundsTotalUtilized">₹0</div>
+              <div class="stat-label">Funds Utilized</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promise Fulfillment Chart -->
+        <div class="card" style="margin-bottom: 30px;">
+          <h2>Promise Fulfillment Trends</h2>
+          <div id="promiseFulfillmentChart" class="chart-container">
+            <p style="text-align: center; color: var(--text-secondary);">Loading chart...</p>
+          </div>
+        </div>
+
+        <!-- Fund Allocation Chart -->
+        <div class="card" style="margin-bottom: 30px;">
+          <h2>Fund Allocation & Utilization</h2>
+          <div id="fundAllocationChart" class="chart-container">
+            <p style="text-align: center; color: var(--text-secondary);">Loading chart...</p>
+          </div>
+        </div>
+
+        <!-- Top Candidates by Fulfillment -->
+        <div class="card" style="margin-bottom: 30px;">
+          <h2>Top Performers by Promise Fulfillment</h2>
+          <div id="topCandidates" class="candidates-list">
+            <p style="text-align: center; color: var(--text-secondary);">Loading candidates...</p>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="actions-section">
+          <h2>Quick Actions</h2>
+          <div class="quick-actions-grid">
+            <div class="action-card">
+              <div class="action-icon">👤</div>
+              <h3>Explore Candidates</h3>
+              <p>Browse and compare candidates in your constituency.</p>
+              <a href="candidate.html" class="btn btn-primary">View Candidates</a>
+            </div>
+            <div class="action-card">
+              <div class="action-icon">⚖️</div>
+              <h3>Track Promises</h3>
+              <p>Monitor election promises and their fulfillment status.</p>
+              <a href="promises.html" class="btn btn-primary">View Promises</a>
+            </div>
+            <div class="action-card">
+              <div class="action-icon">📊</div>
+              <h3>Compare Candidates</h3>
+              <p>Compare multiple candidates side by side.</p>
+              <a href="campare.html" class="btn btn-primary">Compare Now</a>
+            </div>
+            <div class="action-card">
+              <div class="action-icon">✓</div>
+              <h3>Check Reports</h3>
+              <p>View verified reports and transparency data.</p>
+              <a href="reports.html" class="btn btn-primary">View Reports</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NagrikNeeti. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Role Guard + Page Logic -->
+  <script type="module" src="../assets/js/role-gaurd.js"></script>
+  <script type="module" src="../assets/js/pages/dashboard.js"></script>
+
+</body>
+</html>

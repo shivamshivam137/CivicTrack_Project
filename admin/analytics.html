@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Analytics | NagrikNeeti</title>
+
+  <!-- Base + Admin styles -->
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/admin.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="admin-header">
+    <h1>Platform Analytics</h1>
+    <p>Aggregated insights from verified candidate data</p>
+  </header>
+
+  <main class="admin-analytics">
+
+    <section class="stats">
+      <div class="stat-card">
+        <h3>Total Candidates</h3>
+        <p id="totalCandidates">—</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Avg. Transparency Score</h3>
+        <p id="avgTransparency">—</p>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="chart-box">
+        <h3>Party-wise Candidate Distribution</h3>
+        <canvas id="partyChart"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h3>Promise Fulfillment</h3>
+        <canvas id="promiseChart"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Page Logic -->
+  <script type="module">
+    import { getCandidateAnalytics } from "/assets/js/firestore/analytics.js";
+
+    const totalEl = document.getElementById("totalCandidates");
+    const avgEl = document.getElementById("avgTransparency");
+
+    const partyCtx = document.getElementById("partyChart").getContext("2d");
+    const promiseCtx = document.getElementById("promiseChart").getContext("2d");
+
+    async function initAnalytics() {
+      const data = await getCandidateAnalytics();
+
+      totalEl.textContent = data.totalCandidates;
+      avgEl.textContent =
+        data.averageTransparency !== null
+          ? data.averageTransparency
+          : "N/A";
+
+      // Party-wise pie chart
+      new Chart(partyCtx, {
+        type: "pie",
+        data: {
+          labels: Object.keys(data.partyCount),
+          datasets: [{
+            data: Object.values(data.partyCount)
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+
+      // Promise fulfillment bar chart
+      new Chart(promiseCtx, {
+        type: "bar",
+        data: {
+          labels: ["Completed", "Pending"],
+          datasets: [{
+            data: [
+              data.promiseStats.completed,
+              data.promiseStats.pending
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+    }
+
+    initAnalytics();
+  </script>
+
+</body>
+</html>

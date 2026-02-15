@@ -1,0 +1,79 @@
+/* Admin Dashboard Styling */
+
+.admin-header {
+    padding: 1rem;
+    background: #0b3d2e;
+    color: #fff;
+}
+
+.admin-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.admin-form,
+.admin-list {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.admin-form label {
+    display: block;
+    margin-top: 0.75rem;
+    font-weight: 600;
+}
+
+.admin-form input {
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.admin-form button {
+    margin-top: 1rem;
+}
+
+.secondary {
+    background: #ccc;
+}
+
+.hidden {
+    display: none;
+}
+
+.candidate-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.candidate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.actions button {
+    margin-left: 0.5rem;
+}
+
+.danger {
+    background: #c62828;
+    color: #fff;
+}
+
+.empty {
+    color: #777;
+    font-style: italic;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .admin-container {
+        grid-template-columns: 1fr;
+    }
+}

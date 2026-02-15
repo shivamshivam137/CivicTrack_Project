@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NagrikNeeti | Candidate Profile</title>
+
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23005AD0' width='100' height='100'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>N</text></svg>">
+
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/candidat.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+  <style>
+    /* Card Styles for the List View */
+    .candidate-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+    }
+    .candidate-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .candidate-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        border: 2px solid #005AD0;
+    }
+
+    /* Header & Profile Styles */
+    .candidate-profile-header {
+      background: linear-gradient(135deg, #005AD0 0%, #003a8c 100%);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .candidate-profile-header .container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .profile-image-section img {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    .profile-basic-info h1 {
+      margin: 0 0 0.5rem 0;
+      color: white;
+      font-size: 2.5rem;
+    }
+
+    .profile-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .profile-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .profile-meta-label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .profile-meta-value {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* Tabs & Content */
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 2px solid #eee;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .tab-button {
+      padding: 1rem 1.5rem;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-weight: 600;
+      color: #666;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .tab-button.active {
+      color: #005AD0;
+      border-bottom-color: #005AD0;
+    }
+
+    .tab-content { display: none; animation: fadeIn 0.3s ease-in; }
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Detail Cards */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .detail-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 4px solid #005AD0;
+    }
+
+    .detail-list { list-style: none; padding: 0; margin: 0; }
+    .detail-list li { padding: 0.5rem 0; border-bottom: 1px solid #eee; color: #555; }
+    .detail-list li strong { color: #333; }
+    
+    /* Utilities */
+    .btn { padding: 0.6rem 1.2rem; border-radius: 4px; cursor: pointer; border: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; }
+    .btn-primary { background: #005AD0; color: white; }
+    .btn-primary:hover { background: #004199; }
+    .btn-outline { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.5); color: white; }
+    .btn-outline:hover { background: rgba(255,255,255,0.2); }
+    
+    .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #005AD0; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .candidate-profile-header .container { grid-template-columns: 1fr; text-align: center; }
+      .profile-meta { justify-content: center; }
+      .tabs { overflow-x: auto; white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" style="background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div class="navbar-container" style="max-width: 1200px; margin: 0 auto; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" class="logo" style="font-weight:bold; font-size:1.5rem; color:#005AD0; text-decoration:none;">NagrikNeeti</a>
+      <nav class="nav-menu" style="display:flex; gap:1.5rem;">
+        <a href="index.html" style="text-decoration:none; color:#333; font-weight:500;">Home</a>
+        <a href="campare.html" style="text-decoration:none; color:#333; font-weight:500;">Compare</a>
+        <a href="promises.html" style="text-decoration:none; color:#333; font-weight:500;">Promises</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div id="candidateListView">
+      <section class="container" style="max-width: 1200px; margin: 3rem auto; padding: 0 1rem;">
+        <h1>Candidate Directory</h1>
+        <p style="color: #666; margin-bottom: 2rem;">Explore verified public information about election candidates.</p>
+
+        <div class="filters" style="display:flex; gap:1rem; margin-bottom: 2rem; flex-wrap:wrap;">
+          <input type="text" id="searchName" placeholder="Search by name..." style="padding:0.8rem; border:1px solid #ccc; border-radius:4px; flex:1; min-width: 200px;">
+        </div>
+
+        <div id="candidatesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
+          <div class="spinner-container" style="grid-column: 1/-1; text-align:center; padding:3rem;">
+            <div class="spinner"></div>
+            <p style="margin-top:1rem; color:#666;">Connecting to Firebase...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="candidateDetailView" style="display:none;">
+      
+      <div class="candidate-profile-header">
+        <div class="container">
+          <div class="profile-image-section">
+            <img id="detailImage" src="" alt="Candidate Profile" />
+          </div>
+          <div class="profile-basic-info">
+            <h1 id="detailName">-</h1>
+            <div class="profile-meta">
+              <div class="profile-meta-item">
+                <span class="profile-meta-label">Party</span>
+                <span class="profile-meta-value" id="detailParty">-</span>
+              </div>
+              <div class="profile-meta-item">
+                <span class="profile-meta-label">Constituency</span>
+                <span class="profile-meta-value" id="detailConstituency">-</span>
+              </div>
+              <div class="profile-meta-item">
+                <span class="profile-meta-label">Transparency</span>
+                <span class="profile-meta-value" id="detailTransparency">0%</span>
+              </div>
+            </div>
+            
+            <div class="stats-row">
+              <div class="stat-item">
+                <span class="stat-number" id="statPromises">0</span>
+                <span class="stat-label">Total Promises</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="statCompletion">0%</span>
+                <span class="stat-label">Completed</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="statFunds">0%</span>
+                <span class="stat-label">Fund Utilization</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button class="btn btn-primary" id="compareBtn">📊 Add to Compare</button>
+              <button class="btn btn-outline" id="backToListBtn" style="margin-left: 0.5rem;">← Back to List</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        
+        <div class="tabs">
+          <button class="tab-button active" data-tab="overview">📋 Overview</button>
+          <button class="tab-button" data-tab="promises">✓ Promises</button>
+          <button class="tab-button" data-tab="background">📚 Background</button>
+        </div>
+
+        <div id="overview" class="tab-content active">
+          <div class="detail-grid">
+            
+            <div class="detail-card">
+              <h3>📚 Education</h3>
+              <p id="detailEducation" style="color: #666; line-height: 1.6;">Not provided</p>
+            </div>
+
+            <div class="detail-card">
+              <h3>💰 Financial Information</h3>
+              <ul class="detail-list">
+                <li><strong>Assets:</strong> ₹<span id="detailAssets">0</span></li>
+                <li><strong>Liabilities:</strong> ₹<span id="detailLiabilities">0</span></li>
+                <li><strong>Net Worth:</strong> ₹<span id="detailNetWorth">0</span></li>
+              </ul>
+            </div>
+
+            <div class="detail-card">
+              <h3>⚖️ Legal Status</h3>
+              <ul class="detail-list">
+                <li><strong>Criminal Cases:</strong> <span id="detailCases">None</span></li>
+              </ul>
+            </div>
+
+            <div class="detail-card">
+              <h3>💵 Funds Management</h3>
+              <ul class="detail-list">
+                <li><strong>Allocated:</strong> ₹<span id="detailFundAllocated">0</span></li>
+                <li><strong>Utilized:</strong> ₹<span id="detailFundUtilized">0</span></li>
+                <li><strong>Utilization Rate:</strong> <span id="detailFundRate">0%</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="promises" class="tab-content">
+          <div class="detail-card">
+            <h2>Election Promises</h2>
+            <p style="color: #666; margin-top: 1rem;">Promises data integration coming soon...</p>
+          </div>
+        </div>
+
+        <div id="background" class="tab-content">
+          <div class="detail-card">
+            <h2>Political History</h2>
+            <p id="detailHistory" style="color: #666; line-height: 1.6; white-space: pre-wrap;">No history recorded.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    // 1. Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // ------------------------------------------------------------------
+    // 2. PASTE YOUR FIREBASE CONFIG HERE
+    // ------------------------------------------------------------------
+   const firebaseConfig = {
+  apiKey: "AIzaSyA9_dxPl_MysWCnkeqNcMD_M9XQb0bKaJg",
+  authDomain: "nagrikneeti1234.firebaseapp.com",
+  projectId: "nagrikneeti1234",
+  storageBucket: "nagrikneeti1234.firebasestorage.app",
+  messagingSenderId: "423116515556",
+  appId: "1:423116515556:web:84e9d71fa067063068e4f1"
+};
+
+    // 3. Initialize App
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let allCandidates = [];
+
+    // 4. Fetch Function
+    async function loadCandidates() {
+      const container = document.getElementById('candidatesContainer');
+      
+      try {
+        // Assuming collection name is "candidates"
+        const querySnapshot = await getDocs(collection(db, "candidates"));
+        
+        container.innerHTML = ''; // Clear loading spinner
+
+        if (querySnapshot.empty) {
+          container.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No candidates found in database.</p>';
+          return;
+        }
+
+        allCandidates = []; // Reset local store
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const candidateObj = { id: doc.id, ...data };
+          allCandidates.push(candidateObj);
+
+          // Create Card
+          const card = document.createElement('div');
+          card.className = 'candidate-card';
+          const imageUrl = data.image || 'https://via.placeholder.com/150?text=No+Image';
+
+          card.innerHTML = `
+            <img src="${imageUrl}" alt="${data.name}">
+            <h3 style="margin:0.5rem 0;">${data.name || 'Unknown'}</h3>
+            <p style="margin:0; color:#005AD0; font-weight:600;">${data.party || 'Independent'}</p>
+            <p style="margin:0 0 1rem 0; font-size:0.9rem; color:#666;">${data.constituency || ''}</p>
+            <button class="btn btn-primary view-btn" data-id="${doc.id}">View Profile</button>
+          `;
+          container.appendChild(card);
+        });
+
+        // Add Event Listeners to Buttons
+        document.querySelectorAll('.view-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.target.getAttribute('data-id');
+            viewCandidate(id);
+          });
+        });
+
+      } catch (error) {
+        console.error("Firebase Error:", error);
+        container.innerHTML = `<p style="color:red; text-align:center; grid-column:1/-1;">Error loading data: ${error.message}</p>`;
+      }
+    }
+
+    // 5. Populate Rich Profile View
+    function viewCandidate(id) {
+      const c = allCandidates.find(cand => cand.id === id);
+      if (!c) return;
+
+      // Header Info
+      document.getElementById('detailImage').src = c.image || 'https://via.placeholder.com/200';
+      document.getElementById('detailName').textContent = c.name || 'Unknown Name';
+      document.getElementById('detailParty').textContent = c.party || 'N/A';
+      document.getElementById('detailConstituency').textContent = c.constituency || 'N/A';
+      document.getElementById('detailTransparency').textContent = c.transparency_score || '0%';
+
+      // Stats Row (Using checks to avoid undefined)
+      document.getElementById('statPromises').textContent = c.promises_total || '0';
+      document.getElementById('statCompletion').textContent = c.completion_rate || '0%';
+      document.getElementById('statFunds').textContent = c.fund_utilization || '0%';
+
+      // Overview Tab Details
+      document.getElementById('detailEducation').textContent = c.education || 'Information not provided.';
+      document.getElementById('detailAssets').textContent = c.assets || '0';
+      document.getElementById('detailLiabilities').textContent = c.liabilities || '0';
+      document.getElementById('detailNetWorth').textContent = c.net_worth || '0';
+      document.getElementById('detailCases').textContent = c.criminal_cases || 'None recorded';
+
+      // Funds
+      document.getElementById('detailFundAllocated').textContent = c.funds_allocated || '0';
+      document.getElementById('detailFundUtilized').textContent = c.funds_used || '0';
+      document.getElementById('detailFundRate').textContent = c.fund_utilization || '0%';
+      
+      // History
+      document.getElementById('detailHistory').textContent = c.political_history || 'No history recorded.';
+
+      // Switch View
+      document.getElementById('candidateListView').style.display = 'none';
+      document.getElementById('candidateDetailView').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    // 6. Navigation Logic
+    document.getElementById('backToListBtn').addEventListener('click', () => {
+      document.getElementById('candidateDetailView').style.display = 'none';
+      document.getElementById('candidateListView').style.display = 'block';
+    });
+
+    // 7. Tab Logic
+    const tabs = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+      });
+    });
+
+    // Run Logic
+    loadCandidates();
+  </script>
+</body>
+</html>

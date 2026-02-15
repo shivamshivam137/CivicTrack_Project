@@ -1,0 +1,155 @@
+Problem Statement 2 : Civic Awareness & Candidate Transparency 
+Platform  
+In local and general elections, voters often lack access to clear, verified, 
+and consolidated information about candidates. Essential details such as 
+educational background, criminal records, past performance, asset 
+declarations, and fulfillment of election promises are scattered across 
+multiple sources or presented in complex formats. This information gap 
+limits informed decision-making and weakens public accountability, 
+ultimately affecting the quality of democratic participation.  
+Expected Solution   
+Develop a Civic Awareness & Candidate Transparency Platform in 
+the form of a web or mobile application that acts as a digital report 
+card for election candidates. The platform should provide unified 
+candidate profiles, track manifesto promises against real-world progress, 
+enable verified public feedback, and present constituency-level fund 
+allocation and utilization data through visual dashboards.                      
+
+Analyse the following:
+-above given problem statment
+-our complete conversation
+- website codes in attached index.file
+Generate a precise and strengthen prompt for Gihub copilot to take a reference from attached file for theme,style,attractive UI/UX and make changes/edits,add required file in my website that i created using chatgpt( from our conversation) for making mordern day stylish website on above given problem statement (add all mentioned features with existing one) and with given expected solutions and with following conditions (must fulfill these conditions): 
+-without changing the existing/core architecture,(but yes i alow to make changes in codes or add codes in files or create new required files in ).  
+-all button,link and connections must be working.
+-it should maintain all paths and connection with others file.
+-And most important it should be connected to my firebase (firestore database + Athentication ) ,I already provided api key
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "nagrikneeti1234.firebaseapp.com",
+  projectId: "nagrikneeti1234",
+  storageBucket: "nagrikneeti1234.firebasestorage.app",
+  messagingSenderId: "423116515556",
+  appId: "1:423116515556:web:84e9d71fa067063068e4f1"
+};
+
+
+
+You are working on an existing web project named “NagrikNeeti”, a Civic Awareness & Candidate Transparency Platform.
+
+IMPORTANT CONTEXT (READ CAREFULLY):
+- I am attaching reference files separately. Use them ONLY for inspiration for:
+  - visual theme
+  - UI/UX patterns
+  - animations, layouts, and modern styling
+- DO NOT describe, summarize, or recreate those files verbatim.
+- DO NOT change the core architecture of my existing project.
+
+OBJECTIVE:
+Upgrade my existing NagrikNeeti website into a modern, production-ready civic transparency platform that fully satisfies the following problem statement and expected solution:
+
+Problem:
+Voters lack clear, verified, and consolidated information about election candidates (education, criminal records, assets, performance, promises, fund usage).
+
+Expected Solution:
+A digital report card platform with:
+- Unified candidate profiles
+- Manifesto promise tracking with progress
+- Verified public feedback
+- Constituency-level fund allocation & utilization dashboards
+
+ARCHITECTURE CONSTRAINTS (NON-NEGOTIABLE):
+- Preserve existing folder structure and modular JS architecture
+- HTML/CSS/Vanilla JS only (no framework migration)
+- Firebase remains the backend (Firestore + Authentication + Storage)
+- Firestore helper modules must remain the source of truth
+- Page-level JS files must remain separated
+- Maintain all existing paths, imports, and file connections
+
+YOU MAY:
+- Modify existing code
+- Add new JS/CSS/HTML files where required
+- Improve UI structure and responsiveness
+- Add defensive checks and validation
+- Refactor for clarity without breaking behavior
+
+YOU MAY NOT:
+- Break any existing functionality
+- Remove Firebase usage
+- Hardcode data that belongs in Firestore
+- Introduce authentication logic where it does not already exist
+
+FUNCTIONAL REQUIREMENTS (ALL MUST WORK):
+1. Candidate Profiles
+   - Education, criminal cases, assets, liabilities
+   - Past performance & political history
+   - Profile image handling with fallback
+
+2. Promises & Accountability
+   - Promises linked to candidates
+   - Status: planned / in-progress / completed
+   - Fulfillment percentage calculation
+   - Proof links (optional)
+   - Graceful handling of missing or deleted data
+
+3. Public Pages (READ-ONLY)
+   - Group promises by candidate
+   - Display fulfillment percentages
+   - Handle empty Firestore collections safely
+   - No broken images or links
+
+4. Admin Pages (WRITE-RESTRICTED)
+   - Add/edit/delete candidates
+   - Add/edit/delete promises
+   - Link promises to candidates
+   - Defensive validation on all inputs
+
+5. Dashboards
+   - Visual charts for promise fulfillment
+   - Constituency-level fund allocation & utilization
+   - Use lightweight JS charting (no heavy frameworks)
+
+6. Public Feedback
+   - Verified feedback structure (no anonymous writes)
+   - Read-only public display
+   - Safe rendering of user-generated content
+
+FIREBASE REQUIREMENTS:
+- Must connect to my existing Firebase project
+- Firebase config is already provided (apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId)
+- If anything additional is REQUIRED (indexes, rules, settings), clearly state it
+- Firestore must be the single source of truth
+- Use proper async handling and error catching
+- No console errors in normal usage
+
+SECURITY & STABILITY:
+- Admin access controlled via Firestore roles
+- Client-side guards + Firestore rules alignment
+- No UI crashes on:
+  - empty collections
+  - deleted candidates
+  - missing fields
+  - invalid URLs
+
+DELIVERABLES:
+- Updated and/or new files with clean, readable code
+- All buttons, links, and flows fully functional
+- No broken imports or paths
+- No runtime JS errors
+- Modern, accessible, responsive UI inspired by the attached reference
+
+DOCUMENTATION (MANDATORY):
+At the end, provide:
+1. Firebase setup guide (rules, indexes if needed)
+2. Any additional configuration steps required
+3. Explanation of new files added and why
+4. Assumptions made (if any)
+
+QUALITY BAR:
+- Production-grade
+- Defensive coding
+- No placeholder logic
+- No demo-only shortcuts
+- Code must be maintainable and realistic
+
+Proceed step-by-step. Do not skip edge cases. Verify everything.
